@@ -7,9 +7,13 @@ node {
     stage('Maven Package') { 
        sh label: '', script: 'mvn package'
     }
-    def img = stage ('Build')
-       docker.build("$IMAGE", '.')
     
+    
+    def img = stage ('Build') {
+       agent {
+         docker { image '$IMAGE' }
+        }
+    }
      stage('Push') {
           docker.withRegistry('https://hub.docker.com', 'reg1') {
               img.push 'latest'
