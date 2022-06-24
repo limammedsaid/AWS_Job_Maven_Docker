@@ -1,4 +1,6 @@
 node {
+   def registryProjet='registry.gitlab.com/xavki/presentations-jenkins/wartest'
+   def IMAGE="${registryProjet}:wartest-version-${env.BUILD_ID}"
     stage('Clone') {
       git 'https://github.com/limammedsaid/AWS_Job_Maven_Docker.git'
     }
